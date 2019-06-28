@@ -7,7 +7,8 @@ The Docker image created by the Dockerfile in this repository contains the follo
 * Uses PHP7.2 [old: PHP7.0],
 * Does not use GitHub OAuth tokens anymore (switch to branch `token` if you want to use Composer with OAuth tokens),
 * YYDecode has been removed for now, as it is not compatible with (the out-of-date) PHP7.0,
-* Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb.
+* Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb,
+* Force use of Composer 1.8.x as any future 2.x version of Composer will be incompatible with nZEDb's composer configs,
 * Some messages were made more verbose.
 
 The Dockerfile and image are quite small. A lot of stuff will be configured when you run the container for the first time. This may take some time (in particular the installation of Composer modules).
