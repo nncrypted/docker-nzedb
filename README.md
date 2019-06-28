@@ -7,7 +7,8 @@ The Docker image created by the Dockerfile in this repository contains the follo
 * Uses PHP7.2 [old: PHP7.0],
 * Does not use GitHub OAuth tokens anymore (switch to branch `token` if you want to use Composer with OAuth tokens),
 * YYDecode has been removed for now, as it is not compatible with (the out-of-date) PHP7.0,
-* Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb.
+* Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb,
+* Force use of Composer 1.8.x as any future 2.x version of Composer will be incompatible with nZEDb's composer configs,
 * Some messages were made more verbose.
 
 The Dockerfile and image are quite small. A lot of stuff will be configured when you run the container for the first time. This may take some time (in particular the installation of Composer modules).
@@ -89,8 +90,8 @@ The port to listen on for HTTP requests. Self explaining.
 * **WEB_SERVER_NAME** - Default: "_"
 The domain name of the web server. E.g. "hub.docker.com". It is important to note that this name should be set as there are redirects in play which will lead to nowhere if not set correctly. If you don't have a name, set the ip address here.
 
-* *(**Deprecated** - This option does not work anymore. If you want to use it, switch to branch `token` (or use the `:token` tag when pulling the image).)* GIT_TOKEN - Default: EMPTY
-~~It is absoloutly mandatory. No token, no fun!.~~ A GitHUB access token. The token ~~is~~ *might be* necessary because during the first start all the parts of the image are pulled directly from github and installed in the image. If this token is not there, then the composer installation of nZEDb and everything else ~~FAILS~~ might fail.
+* *(**Deprecated** - This option is (only) **absolutely mandatory** in the branch `token` (or the `:token` tag when pulling the image).)* GIT_TOKEN - Default: EMPTY
+~~It is absoloutly mandatory. No token, no fun!.~~ A GitHUB access token. The token is necessary because during the first start all the parts of the image are pulled directly from github and installed in the image. If this token is not there, then the composer installation of nZEDb and everything else **FAILS**.
 
 **This is a basic setup that should be behind an nginx reverse proxy or something similar.**
 The setup is able to detect if https is used on the reverse proxy or not so it automagically uses the correct protocol.
