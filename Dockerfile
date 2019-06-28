@@ -10,10 +10,11 @@ ARG LANGUAGE="en_US.UTF-8"
 ARG TERM="xterm-256color"
 
 # Use an up to date version of PHP
-RUN apt-add-repository ppa:ondrej/php && \
+RUN apt-get update && \ 
+    apt-get install software-properties-common -y && \
+    apt-add-repository ppa:ondrej/php && \
     apt-add-repository multiverse && \
     apt-get update && \
-    apt-get install software-properties-common -y && \
     apt-get upgrade -y && \
     apt-get autoremove
 
@@ -48,7 +49,6 @@ RUN apt-get update \
         php7.2-fpm \
         php7.2-intl \
         php7.2-mbstring \
-        php7.2-mcrypt \
         php7.2-soap \
         php7.2-xsl \
         php7.2-zip \
