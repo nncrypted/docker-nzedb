@@ -1,12 +1,16 @@
 # docker-nZEDb
 
+![nZEDb master](https://img.shields.io/badge/nZEDb-master-green.svg)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/reijkelenberg/docker-nzedb.svg)
+![License unspecified](https://img.shields.io/badge/license-unspecified-blue.svg)
+
 This is a fork of [Grimeton/docker-nzedb](https://github.com/Grimeton/docker-nzedb), which hasn't been updated for a couple of years now. Nevertheless, it's quite a neat image - which is why I forked it. 
 
 The Docker image created by the Dockerfile in this repository contains the following changes:
 * Based on Ubuntu 18.04 [old: Ubuntu 16.10],
 * Uses PHP7.2 [old: PHP7.0],
 * Does not use GitHub OAuth tokens anymore (switch to branch `token` if you want to use Composer with OAuth tokens),
-* YYDecode has been removed for now, as it is not compatible with (the out-of-date) PHP7.0,
+* YYDecode has been removed for now, as it is not compatible with PHP7.2,
 * Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb,
 * Force use of Composer 1.8.x as any future 2.x version of Composer will be incompatible with nZEDb's composer configs,
 * Some messages were made more verbose.
