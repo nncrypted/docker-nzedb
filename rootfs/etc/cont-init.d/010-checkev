@@ -205,14 +205,8 @@ echo -n "${_NZEDB_INSTALLED}" > "${_CONTAINER_EV}/_NZEDB_INSTALLED";
 echo "NZEDB_INSTALLED: ${_NZEDB_INSTALLED}"
 echo ""
 
-# export _GIT_TOKEN="${GIT_TOKEN:?WARNING: GIT TOKEN IS MISSING ...}"
-# echo "GIT_TOKEN: ${_GIT_TOKEN}"
-# echo -n "${_GIT_TOKEN}" > "${_CONTAINER_EV}/_GIT_TOKEN";
-# echo ""
-
-if [[ -z "${_GIT_TOKEN}" ]]; then
-    export _GIT_TOKEN=0;
-fi
+export _GIT_TOKEN="${GIT_TOKEN:?WARNING: GIT TOKEN IS MISSING ...}"
+echo "GIT_TOKEN: ${_GIT_TOKEN}"
 echo -n "${_GIT_TOKEN}" > "${_CONTAINER_EV}/_GIT_TOKEN";
 
 if [[ -z "${_COMPOSER_VERSION}" ]]; then
@@ -221,8 +215,12 @@ fi
 echo -n "${_COMPOSER_VERSION}" > "${_CONTAINER_EV}/_COMPOSER_VERSION";
 echo "COMPOSER_VERSION: ${_COMPOSER_VERSION}"
 
-# if [[ "${_GIT_TOKEN}x" == "x" ]]; then
-#     echo "WARNING: NO GIT TOKEN SUPPLIED. INSTALLATION WILL FAIL."
-#     exit 0;
-# fi
+export _GIT_TOKEN="${GIT_TOKEN:?WARNING: GIT TOKEN IS MISSING ...}"
+echo "GIT_TOKEN: ${_GIT_TOKEN}"
+echo -n "${_GIT_TOKEN}" > "${_CONTAINER_EV}/_GIT_TOKEN";
+
+if [[ "${_GIT_TOKEN}x" == "x" ]]; then
+    echo "WARNING: NO GIT TOKEN SUPPLIED. INSTALLATION WILL FAIL."
+    exit 199;
+fi
 
