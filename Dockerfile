@@ -1,7 +1,7 @@
-FROM ubuntu:yakkety
-LABEL maintainer "Grimeton (Grimages) <grimages@fullmesh.de>"
+FROM ubuntu:18.04
+LABEL maintainer "REijkelenberg <https://github.com/REijkelenberg>"
 
-ARG S6_VERSION="v1.19.1.1"
+ARG S6_VERSION="v1.22.1.0"
 ARG S6_ARCH="amd64"
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG LANG="en_US.UTF-8"
@@ -9,6 +9,15 @@ ARG LC_ALL="C.UTF-8"
 ARG LANGUAGE="en_US.UTF-8"
 ARG TERM="xterm-256color"
 
+# Use an up to date version of PHP
+RUN apt-get update && apt-get install software-properties-common -y && \
+    apt-add-repository ppa:ondrej/php && \
+    apt-add-repository multiverse && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get autoremove
+
+# Install dependencies
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install apt-utils locales\
     && DEBIAN_FRONTEND=noninteractive apt-get -y install \
@@ -20,34 +29,33 @@ RUN apt-get update \
         mediainfo \
         nginx-extras \
         p7zip-full \
-        php7.0 \
-        php7.0-cgi \
-        php7.0-cli \
-        php7.0-common \
-        php7.0-curl \
-        php7.0-gd \
-        php7.0-json \
-        php7.0-mysql \
-        php7.0-readline \
-        php7.0-recode \
-        php7.0-tidy \
-        php7.0-xml \
-        php7.0-xmlrpc \
-        php7.0-bcmath \
-        php7.0-bz2 \
-        php7.0-dba \
-        php7.0-fpm \
-        php7.0-intl \
-        php7.0-mbstring \
-        php7.0-mcrypt \
-        php7.0-soap \
-        php7.0-xsl \
-        php7.0-zip \
+        php7.2 \
+        php7.2-cgi \
+        php7.2-cli \
+        php7.2-common \
+        php7.2-curl \
+        php7.2-gd \
+        php7.2-json \
+        php7.2-mysql \
+        php7.2-readline \
+        php7.2-recode \
+        php7.2-tidy \
+        php7.2-xml \
+        php7.2-xmlrpc \
+        php7.2-bcmath \
+        php7.2-bz2 \
+        php7.2-dba \
+        php7.2-fpm \
+        php7.2-intl \
+        php7.2-mbstring \
+        php7.2-mcrypt \
+        php7.2-soap \
+        php7.2-xsl \
+        php7.2-zip \
         php-imagick \
         php-pear \
         tzdata \
         unrar \
-
     && locale-gen $LANG
 
 ADD "https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-${S6_ARCH}.tar.gz" "/tmp/s6.tar.gz"
