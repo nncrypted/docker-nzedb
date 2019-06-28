@@ -33,7 +33,7 @@ Requirements:
 
 To install and run the container use:
 
-docker create --name nzedb reijkelenberg/docker-nzedb
+`docker create --name nzedb reijkelenberg/docker-nzedb`
 
 Available environment variables:
 
