@@ -10,10 +10,10 @@ ARG LANGUAGE="en_US.UTF-8"
 ARG TERM="xterm-256color"
 
 # Use an up to date version of PHP
-RUN apt-get update && apt-get install software-properties-common -y && \
-    apt-add-repository ppa:ondrej/php && \
+RUN apt-add-repository ppa:ondrej/php && \
     apt-add-repository multiverse && \
     apt-get update && \
+    apt-get install software-properties-common -y && \
     apt-get upgrade -y && \
     apt-get autoremove
 
