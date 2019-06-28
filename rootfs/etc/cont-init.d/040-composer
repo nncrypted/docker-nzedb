@@ -2,7 +2,7 @@
 . /opt/scripts/install.rc;
 __check_status;
 echo "================================================================================"
-echo "Installing composer."
+echo "Installing composer ${_COMPOSER_VERSION}"
 echo "================================================================================"
 echo "=== Downloading ..."
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" || __exit 1;
@@ -13,7 +13,7 @@ php -r 'if (hash_file("SHA384", "composer-setup.php") === preg_filter(":^.*?<pre
 echo "--- Done."
 echo ""
 echo "=== Running setup ..."
-php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=${_COMPOSER_VERSION};
 echo "--- Done."
 echo ""
 echo "=== Deleting setup files ..."

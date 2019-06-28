@@ -1,3 +1,19 @@
+# docker-nZEDb
+
+This is a fork of [Grimeton/docker-nzedb](https://github.com/Grimeton/docker-nzedb), which hasn't been updated for a couple of years now. Nevertheless, it's quite a neat image - which is why I forked it. 
+
+The Docker image created by the Dockerfile in this repository contains the following changes:
+* Based on Ubuntu 18.04 [old: Ubuntu 16.10],
+* Uses PHP7.2 [old: PHP7.0],
+* Does not use GitHub OAuth tokens anymore (switch to branch `token` if you want to use Composer with OAuth tokens),
+* YYDecode has been removed for now, as it is not compatible with (the out-of-date) PHP7.0,
+* Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb.
+* Some messages were made more verbose.
+
+The Dockerfile and image are quite small. A lot of stuff will be configured when you run the container for the first time. This may take some time (in particular the installation of Composer modules).
+
+# README
+
 nZEDb container based on nZEDb from https://github.com/nZEDb/nZEDb
 This image is able to run under a different web root than "/". E.g. https://your.server/nzedb/
 
@@ -12,7 +28,7 @@ Requirements:
 
 To install and run the container use:
 
-docker create --name nzedb grimages/nzedb
+docker create --name nzedb reijkelenberg/docker-nzedb
 
 Available environment variables:
 
@@ -73,15 +89,11 @@ The port to listen on for HTTP requests. Self explaining.
 * **WEB_SERVER_NAME** - Default: "_"
 The domain name of the web server. E.g. "hub.docker.com". It is important to note that this name should be set as there are redirects in play which will lead to nowhere if not set correctly. If you don't have a name, set the ip address here.
 
-* **GIT_TOKEN** - Default: **EMPTY**
-**It is absoloutly mandatory. No token, no fun!.** A GitHUB access token. The token is necessary because during the first start all the parts of the image are pulled directly from github and installed in the image. If this token is not there, then the composer installation of nZEDb and everything else **FAILS**.
+* *(**Deprecated** - This option does not work anymore. If you want to use it, switch to branch `token` (or use the `:token` tag when pulling the image).)* GIT_TOKEN - Default: EMPTY
+~~It is absoloutly mandatory. No token, no fun!.~~ A GitHUB access token. The token ~~is~~ *might be* necessary because during the first start all the parts of the image are pulled directly from github and installed in the image. If this token is not there, then the composer installation of nZEDb and everything else ~~FAILS~~ might fail.
 
 **This is a basic setup that should be behind an nginx reverse proxy or something similar.**
 The setup is able to detect if https is used on the reverse proxy or not so it automagically uses the correct protocol.
-
-It also includes the yydecode binary that is available at https://www.ubuntuupdates.org/package/getdeb_apps/yakkety/apps/getdeb/yydecode which is pulled in during installation.  
-
-The image itself is stable. It's in use on two of my machines.
 
 After you started the image for the first time and try to access nZEDb via web you will always be redirected to the setup until nZEDb has been configured. To make this happen, nginx's config file contains an if statement. As [if is evil](https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil/), the nginx configuration will be replaced by one without it and a disabled install directory after the container has been configured and restarted. 
 

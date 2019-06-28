@@ -16,13 +16,13 @@ git clone https://github.com/nZEDb/nZEDb.git . || exit 5;
 echo ""
 echo "--- Done."
 echo ""
-echo "=== Running composer install on nZEDb directory."
+echo "=== Running composer install on nZEDb directory. This may take some time..."
 echo ""
 composer --no-ansi install || exit 6;
 echo ""
 echo "--- Done."
 echo ""
-echo "=== Installing additional modules required."
+echo "=== Installing additional modules required. This may take some time..."
 echo ""
 composer --no-ansi require league/oauth2-google || exit 7;
 echo ""

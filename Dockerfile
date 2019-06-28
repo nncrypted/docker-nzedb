@@ -8,6 +8,7 @@ ARG LANG="en_US.UTF-8"
 ARG LC_ALL="C.UTF-8"
 ARG LANGUAGE="en_US.UTF-8"
 ARG TERM="xterm-256color"
+ARG COMPOSER_VERSION="1.8.6"
 
 # Use an up to date version of PHP
 RUN apt-get update && \ 

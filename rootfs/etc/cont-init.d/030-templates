@@ -24,7 +24,7 @@ __exit $lastexec;
 #echo "--- Done."
 #echo ""
 #echo "=== Converting php.ini configuration template."
-#envsubst '$_PHP_MAX_EXECUTION_TIME $_PHP_MEMORY_LIMIT $_PHP_TIMEZONE' < /opt/files/config/php.ini.tpl > /etc/php/7.0/fpm/php.ini || exit 7;
+#envsubst '$_PHP_MAX_EXECUTION_TIME $_PHP_MEMORY_LIMIT $_PHP_TIMEZONE' < /opt/files/config/php.ini.tpl > /etc/php/7.2/fpm/php.ini || exit 7;
 #echo "--- Done.";
 #echo "";
 #

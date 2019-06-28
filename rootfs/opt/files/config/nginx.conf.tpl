@@ -64,6 +64,6 @@ server {
             fastcgi_param HTTPS $_HTTPS;
             fastcgi_param SCRIPT_FILENAME $document_root$1;
             fastcgi_param SERVER_NAME [+ $WEB_SERVER_NAME +];
-            fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+            fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
         }
     }

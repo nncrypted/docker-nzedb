@@ -108,9 +108,9 @@ echo "RUN_WEB_SERVER set to ${_RUN_WEB_SERVER}";
 echo -n "${_RUN_WEB_SERVER}" > "${_CONTAINER_EV}/_RUN_WEB_SERVER";
 if [[ "${_RUN_WEB_SERVER}" == "0" ]]; then
     touch "${_PATH_SERVICES}/nginx/down";
-    touch "${_PATH_SERVICES}/php-fpm7.0/down";
+    touch "${_PATH_SERVICES}/php-fpm7.2/down";
 else
-    for f in nginx/down php-fpm7.0/down; do
+    for f in nginx/down php-fpm7.2/down; do
         if [[ -f "${_PATH_SERVICES}/${f}" ]]; then
             rm "${_PATH_SERVICES}/${f}";
         fi
@@ -196,20 +196,33 @@ export _WEB_SERVER_NAME="${WEB_SERVER_NAME:-_}"
 echo "WEB_SERVER_NAME: ${_WEB_SERVER_NAME}"
 echo -n "${_WEB_SERVER_NAME}" > "${_CONTAINER_EV}/_WEB_SERVER_NAME";
 echo ""
-
-export _GIT_TOKEN="${GIT_TOKEN:?WARNING: GIT TOKEN IS MISSING ...}"
-echo "GIT_TOKEN: ${_GIT_TOKEN}"
-echo -n "${_GIT_TOKEN}" > "${_CONTAINER_EV}/_GIT_TOKEN";
-echo ""
 if [[ -f "${_PATH_INSTALL_ROOT}/configuration/install.lock" ]]; then
     export _NZEDB_INSTALLED=1;
 else
     export _NZEDB_INSTALLED=0;
 fi
 echo -n "${_NZEDB_INSTALLED}" > "${_CONTAINER_EV}/_NZEDB_INSTALLED";
+echo "NZEDB_INSTALLED: ${_NZEDB_INSTALLED}"
+echo ""
 
-if [[ "${_GIT_TOKEN}x" == "x" ]]; then
-    echo "WARNING: NO GIT TOKEN SUPPLIED. INSTALLATION WILL FAIL."
-    exit 199;
+# export _GIT_TOKEN="${GIT_TOKEN:?WARNING: GIT TOKEN IS MISSING ...}"
+# echo "GIT_TOKEN: ${_GIT_TOKEN}"
+# echo -n "${_GIT_TOKEN}" > "${_CONTAINER_EV}/_GIT_TOKEN";
+# echo ""
+
+if [[ -z "${_GIT_TOKEN}" ]]; then
+    export _GIT_TOKEN=0;
 fi
+echo -n "${_GIT_TOKEN}" > "${_CONTAINER_EV}/_GIT_TOKEN";
+
+if [[ -z "${_COMPOSER_VERSION}" ]]; then
+    export _COMPOSER_VERSION="1.8.6";
+fi
+echo -n "${_COMPOSER_VERSION}" > "${_CONTAINER_EV}/_COMPOSER_VERSION";
+echo "COMPOSER_VERSION: ${_COMPOSER_VERSION}"
+
+# if [[ "${_GIT_TOKEN}x" == "x" ]]; then
+#     echo "WARNING: NO GIT TOKEN SUPPLIED. INSTALLATION WILL FAIL."
+#     exit 0;
+# fi
 
