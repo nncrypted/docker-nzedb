@@ -1,5 +1,9 @@
 # docker-nZEDb
 
+![nZEDb master](https://img.shields.io/badge/nZEDb-master-green.svg)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/reijkelenberg/docker-nzedb.svg)
+![License unspecified](https://img.shields.io/badge/license-unspecified-blue.svg)
+
 This is a fork of [Grimeton/docker-nzedb](https://github.com/Grimeton/docker-nzedb), which hasn't been updated for a couple of years now. Nevertheless, it's quite a neat image - which is why I forked it. 
 
 The Docker image created by the Dockerfile in this repository contains the following changes:
