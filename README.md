@@ -9,6 +9,7 @@ This is a fork of [Grimeton/docker-nzedb](https://github.com/Grimeton/docker-nze
 The Docker image created by the Dockerfile in this repository contains the following changes:
 * Based on Ubuntu 18.04 [old: Ubuntu 16.10],
 * Uses PHP7.2 [old: PHP7.0],
+* Set default timezone to UTC,
 * Does not use GitHub OAuth tokens anymore (switch to branch `token` if you want to use Composer with OAuth tokens),
 * YYDecode has been removed for now, as it is not compatible with PHP7.2,
 * Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb,
