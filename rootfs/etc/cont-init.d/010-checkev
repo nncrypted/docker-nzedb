@@ -18,7 +18,7 @@ echo -n "${_PATH_TZ}" > "${_CONTAINER_EV}/_PATH_TZ";
 
 
 if [[ "${TZ}x" == "x" || ! -f "${_PATH_TZ}/${TZ}" ]]; then
-    export TZ="Europe/Berlin";
+    export TZ="UTC";
 fi
 echo "${TZ}" > "${_CONTAINER_EV}/TZ";
 
