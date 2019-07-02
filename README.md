@@ -18,6 +18,8 @@ The Docker image created by the Dockerfile in this repository contains the follo
 
 The Dockerfile and image are quite small. A lot of stuff will be configured when you run the container for the first time. This may take some time (in particular the installation of Composer modules).
 
+Upon first run, the latest version of nZEDb will be downloaded.
+
 # README
 
 nZEDb container based on nZEDb from https://github.com/nZEDb/nZEDb
