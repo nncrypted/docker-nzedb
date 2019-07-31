@@ -12,7 +12,7 @@ The Docker image created by the Dockerfile in this repository contains the follo
 * Set default timezone to UTC,
 * Does not use GitHub OAuth tokens anymore (switch to branch `token` if you want to use Composer with OAuth tokens),
 * YYDecode has been removed for now, as it is not compatible with PHP7.2,
-* Remove php-mcrypt, as a) it is deprecated in PNP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb,
+* Remove php-mcrypt, as a) it is deprecated in PHP7.2 and b) is, to the extent of my knowledge, not being used by nZEDb,
 * Force use of Composer 1.8.x as any future 2.x version of Composer will be incompatible with nZEDb's composer configs,
 * Some messages were made more verbose.
 
