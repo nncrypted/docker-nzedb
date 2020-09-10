@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL maintainer "REijkelenberg <https://github.com/REijkelenberg>"
+LABEL maintainer "nncrypted <https://github.com/nncrypted>"
 
 ARG S6_VERSION="v1.22.1.0"
 ARG S6_ARCH="amd64"
